@@ -12,7 +12,5 @@ runs:
   steps:
     - name: Build docker image
       run: docker build -t ${{ inputs.docker_image_tag}} ./${{ inputs.application }}  
-    shell: bash
     - name: Push docker image
       run: docker push ${{ inputs.docker_image_tag}}
-    shell: bash  
