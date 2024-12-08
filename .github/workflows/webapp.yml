@@ -21,10 +21,15 @@ jobs:
               - 'backend/**'
       - name: Build Backend application
         if: steps.filter.outputs.backend == 'true'
-        uses: ./.github/actions/build
-        with:
-          application: backend
-          docker_image_tag: aleksandrscikinovs/webapp-backend
+        # uses: ./.github/actions/build
+        # with:
+          # application: backend
+          # docker_image_tag: aleksandrscikinovs/webapp-backend
+      - name: Build docker image
+        run: docker build -t aleksandrscikinovs/webapp-backend ./backend  
+      - name: Push docker image
+        run: docker push aleksandrscikinovs/webapp-backend
+      
   build-frontend:
     name: Build Frontend
     runs-on: self-hosted
@@ -39,10 +44,15 @@ jobs:
               - 'frontend/**'
       - name: Build Frontend application
         if: steps.filter.outputs.frontend == 'true'
-        uses: ./.github/actions/build
-        with:
-          application: frontend
-          docker_image_tag: aleksandrscikinovs/webapp-frontend
+        # uses: ./.github/actions/build
+        # with:
+          # application: frontend
+          # docker_image_tag: aleksandrscikinovs/webapp-frontend
+      - name: Build docker image
+        run: docker build -t aleksandrscikinovs/webapp-frontend ./frontend  
+      - name: Push docker image
+        run: docker push aleksandrscikinovs/webapp-frontend
+      
 
   deploy-backened-dev:
     name: Delploy Backend to Kubernetes DEV
