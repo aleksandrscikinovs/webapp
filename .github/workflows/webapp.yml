@@ -29,7 +29,6 @@ jobs:
         run: docker build -t aleksandrscikinovs/webapp-backend ./backend  
       - name: Push docker image
         run: docker push aleksandrscikinovs/webapp-backend
-      
   build-frontend:
     name: Build Frontend
     runs-on: self-hosted
